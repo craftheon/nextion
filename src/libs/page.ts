@@ -37,10 +37,12 @@ export const getAllPages = async function (): Promise<PageListItem[]> {
       })
       for (const dbRes of databasePages.results) {
         // @ts-ignore
-        const title = Object.values(dbRes.properties).filter(e => e.type === 'title')[0].title[0].text.content
+        const title = Object.values(dbRes.properties).filter(e => e.type === 'title')[0].title[0]?.text.content
+        // @ts-ignore
+        const slug = dbRes.properties['Slug']?.rich_text[0]?.plain_text
         res.push({
           id: dbRes.id.replace(/[-]/g, ''),
-          slug: [prefix, title.toLowerCase().replace(/\s+/g, '-')],
+          slug: [prefix, slug ? slug : title.toLowerCase().replace(/\s+/g, '-')],
           type: 'article',
           title,
           showInNav: false,
