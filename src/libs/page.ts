@@ -75,7 +75,9 @@ export const getPageById = async function (pageId: string): Promise<PageItem> {
   return {
     content: mdString.parent,
     // @ts-ignore
-    title: getPropertyTitle(Object.values(metadata.properties))
+    title: getPropertyTitle(Object.values(metadata.properties)),
+    // @ts-ignore
+    createdTime: metadata.created_time
   }
 }
 

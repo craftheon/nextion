@@ -11,6 +11,7 @@ interface Props {
   pages: PageListItem[];
   content?: MDXRemoteSerializeResult;
   list?: PageItem[];
+  createdTime?: Date,
   title?: string;
   navs: { link: string, title: string }[]
 }
@@ -62,6 +63,7 @@ export async function getStaticProps({ params: { page } }: { params: { page: str
       pages,
       title: data.title,
       content: mdx,
+      createdTime: data.createdTime,
       type: pgs[0].type,
       navs: pages.filter(e => e.showInNav).map(e => ({ link: e.slug.join('/'), title: e.title }))
     }
@@ -79,6 +81,7 @@ export default function MainPage(props: Props) {
         pages={props.pages}
         list={props.list}
         title={props.title}
+        time={props.createdTime}
         content={props.content as MDXRemoteSerializeResult}
       />
     </>
