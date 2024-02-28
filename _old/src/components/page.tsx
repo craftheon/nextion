@@ -17,7 +17,7 @@ export function List({ list, title }: { list?: PageItem[], title?: string }) {
         {list?.map(e =>
           <Link href={(e.slug as string[]).join('/')} className="group flex flex-col md:flex-row justify-between gap-2" key={e.title}>
             <h3 className="transition-colors group-hover:text-fg-hover-color">{e.title}</h3>
-            <time dateTime={e.createdTime as string} className="text-sm text-neutral-600 dark:text-neutral-400">{format(new Date(e.createdTime as Date), "MMM dd, yyyy")}</time>
+            <time dateTime={e.create_time as string || e.systemCreatedTime as string} className="text-sm text-neutral-600 dark:text-neutral-400">{format(new Date(e.create_time as string || e.systemCreatedTime as string), "MMM dd, yyyy")}</time>
           </Link>
         )}
       </ul>
