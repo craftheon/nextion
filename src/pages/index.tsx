@@ -22,7 +22,7 @@ export default function Index() {
   return (
     <>
       <Metadata />
-      <Component />
+      <Component type="page" />
     </>
   )
 }

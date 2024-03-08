@@ -63,7 +63,6 @@ export const getPropertyValue = function (property: PropertyItemObjectResponse) 
 }
 
 export const getPropertyKey = function (key: string) {
-  console.log(key)
   return toCamelCase(key)
 }
 

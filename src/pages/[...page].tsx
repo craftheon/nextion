@@ -1,7 +1,16 @@
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { getAllPages, getDatabaseById, getPageById } from "@/libs/page";
 import Component from "@/components/page";
 import Metadata from "@/components/metadata";
+import { Article } from "@/type";
 
+interface Props {
+  title: string;
+  lists?: Article[];
+  type: 'list' | 'article' | 'page';
+  metadata?: any;
+  content: MDXRemoteSerializeResult;
+}
 
 export async function getStaticPaths() {
   const res = await getAllPages()
@@ -31,26 +40,29 @@ export async function getStaticProps({ params: { page } }: { params: { page: str
   const currentPage = pgs[0]
   if (currentPage.type === 'list') {
     const { title, articles } = await getDatabaseById(currentPage.id)
-    console.log(articles)
     return {
       props: {
         title,
+        type: currentPage.type,
+        list: articles
       }
     }
   }
-  const { title, content } = await getPageById(currentPage.id);
+  const { title, content, ...metadata } = await getPageById(currentPage.id);
   return {
     props: {
       title,
+      type: currentPage.type,
+      metadata,
       content
     }
   }
 }
 
-export default function Page() {
+export default function Page({ title, lists, content, type, metadata }: Props) {
   return (
     <>
-      <Metadata />
+      <Metadata title={title} description={metadata?.summary} />
       <Component />
     </>
   )
