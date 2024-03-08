@@ -15,7 +15,7 @@ export interface SiteConfig {
   notionPageId: string;
   siteInfo: SiteInformation;
   defaultTheme?: "light" | "dark";
-  homePage?: Link;
+  homePage?: string;
   navLinks?: Link[];
   footerLinks?: Link[];
   pageOverrides?: {

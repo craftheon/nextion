@@ -26,14 +26,14 @@ export const getFullPagePath = function (id: string, title: string) {
   const defaultPath = getPagePath(title);
 
   const overidePath = pageOverrides ? (pageOverrides[id] || defaultPath) : defaultPath,
-    path = homePage ? (homePage.title === title ? "/" : overidePath) : overidePath;
+    path = homePage ? (homePage === title ? "/" : overidePath) : overidePath;
   return path
 }
 
 export const getPropertyTitle = function (properties: PropertyItemObjectResponse[]) {
   const property = properties.filter(property => property.type === 'title')[0]
   // @ts-ignore
-  return property.title[0].plain_text
+  return property.title[0]?.plain_text || null
 }
 
 export const getPropertyValue = function (property: PropertyItemObjectResponse) {
@@ -63,6 +63,7 @@ export const getPropertyValue = function (property: PropertyItemObjectResponse) 
 }
 
 export const getPropertyKey = function (key: string) {
+  console.log(key)
   return toCamelCase(key)
 }
 

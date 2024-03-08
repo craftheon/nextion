@@ -1,6 +1,8 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote"
 import { serialize } from "next-mdx-remote/serialize"
-import { getAllPages, getPageById } from "@/libs/page"
+import Component from "@/components/page";
+import { getAllPages, getPageById } from "@/libs/page";
+import Metadata from "@/components/metadata";
 
 
 export async function getStaticProps() {
@@ -13,4 +15,14 @@ export async function getStaticProps() {
       pages
     }
   }
+}
+
+
+export default function Index() {
+  return (
+    <>
+      <Metadata />
+      <Component />
+    </>
+  )
 }

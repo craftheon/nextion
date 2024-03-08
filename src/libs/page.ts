@@ -111,11 +111,11 @@ export const getDatabaseById = async function (databaseId: string): Promise<{ ti
     for (let propKey of Object.keys(item.properties)) {
       if (item.properties[propKey].type === 'title') {
         // @ts-ignore
-        current.title = getPropertyValue(properties[propKey])
+        current.title = getPropertyValue(item.properties[propKey])
       } else {
         const key = getPropertyKey(propKey)
         // @ts-ignore
-        current[key] = getPropertyValue(properties[propKey])
+        current[key] = getPropertyValue(item.properties[propKey])
       }
     }
     current.href = pageList.filter(page => page.title === current.title)[0].slug.join('/');
