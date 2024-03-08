@@ -23,15 +23,15 @@ export interface SiteConfig {
   };
 }
 
-export interface TinyPage extends Link {
+export interface ArticleSummary extends Partial<Link> {
 
 }
 
-export interface FullPage extends Link {
-
+export interface FullPage extends Partial<Link> {
+  [x: string]: any
 }
 
-export interface Article extends FullPage {
+export interface Article extends Partial<FullPage> {
 
 }
 
