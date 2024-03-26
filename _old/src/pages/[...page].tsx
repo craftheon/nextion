@@ -4,7 +4,7 @@ import { PageItem, PageListItem } from "@/types/page"
 import { MDXRemoteSerializeResult } from "next-mdx-remote"
 import pageComponent from "@/components/page"
 import Metadata from "@/components/meta"
-import Nav from "@/components/nav"
+import Nav from "@/components/layout"
 
 interface Props {
   type: 'list' | 'page' | 'article';

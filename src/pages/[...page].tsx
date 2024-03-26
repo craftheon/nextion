@@ -2,11 +2,14 @@ import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { getAllPages, getDatabaseById, getPageById } from "@/libs/page";
 import Component from "@/components/page";
 import Metadata from "@/components/metadata";
-import { Article } from "@/type";
+import { Article, PageInfo } from "@/type";
+import Layout from "@/components/layout";
+import { getNavs } from "@/libs/site";
 
 interface Props {
   title: string;
   lists?: Article[];
+  pages: PageInfo[];
   type: 'list' | 'article' | 'page';
   metadata?: any;
   content: MDXRemoteSerializeResult;
@@ -44,7 +47,8 @@ export async function getStaticProps({ params: { page } }: { params: { page: str
       props: {
         title,
         type: currentPage.type,
-        list: articles
+        list: articles,
+        pages,
       }
     }
   }
@@ -54,16 +58,35 @@ export async function getStaticProps({ params: { page } }: { params: { page: str
       title,
       type: currentPage.type,
       metadata,
-      content
+      content,
+      pages
     }
   }
 }
 
-export default function Page({ title, lists, content, type, metadata }: Props) {
+export default function Page({
+  title,
+  lists,
+  content,
+  type,
+  metadata,
+  pages
+}: Props
+) {
+  const navs = getNavs(pages)
+
   return (
-    <>
-      <Metadata title={title} description={metadata?.summary} />
-      <Component />
-    </>
+    <Layout navs={navs}>
+      <Metadata
+        title={title}
+        description={metadata?.summary}
+      />
+      <Component
+        type={type}
+        lists={lists}
+        metadata={metadata}
+        content={content}
+      />
+    </Layout>
   )
 }

@@ -1,6 +1,6 @@
 import MDX, { serialize } from "@/components/mdx"
 import Meta from "@/components/meta"
-import Nav from "@/components/nav"
+import Nav from "@/components/layout"
 import { getAllPages, getPageById } from "@/libs/page"
 import { PageListItem } from "@/types/page"
 import { MDXRemoteSerializeResult } from "next-mdx-remote"
