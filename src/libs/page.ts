@@ -66,7 +66,9 @@ export const getAllPages = async function (): Promise<PageInfo[]> {
 
   for (let res of results) {
     // @ts-ignore
-    handler[toCamelCase(res.type)] ? await handler[toCamelCase(res.type)](res) : null
+    const type: string = toCamelCase(res.type)
+    // @ts-ignore
+    handler[type] ? await handler[type](res) : null
   }
 
   return list;
