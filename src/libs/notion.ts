@@ -58,7 +58,7 @@ export const getPropertyValue = function (property: PropertyItemObjectResponse) 
   }
   if (property.type === 'rich_text') {
     // @ts-ignore
-    return property.rich_text[0].plain_text
+    return property.rich_text[0]?.plain_text
   }
 }
 

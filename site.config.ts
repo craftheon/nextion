@@ -6,6 +6,6 @@ export default defineConfig({
     title: "Nextion",
     description: "Nextion is a lightweight and simple website building tool based on Notion.",
     url: "https://nextion.yuangwei.com",
-    author: 'Yuang Wei'
+    author: 'nextion'
   }
 })
